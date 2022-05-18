@@ -11,4 +11,7 @@ public enum Sex {
         this.sex = sex;
     }
 
+    public String getSex() {
+        return sex;
+    }
 }

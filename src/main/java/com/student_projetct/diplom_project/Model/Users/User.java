@@ -31,7 +31,7 @@ public class User {
                 String password){
         this.name = name;
         this.surname = surname;
-        this.role = Role.USER;
+        this.role = Role.WAIT_USER;
         this.age = age;
 
         setAge(age);
@@ -39,30 +39,27 @@ public class User {
         setEmail(email);
         setLogin(login);
         setPassword(password);
-        log.info("The new user: " + this + "- create");
+        log.info("The new user: " + this + " - create");
     }
 
-    public void setEmail(String email) {
-        if (RegexEmailFound.emailCheck(email)) {
-        if (!Connection.findEqualsData("email", email)) this.email = email;
-        }
-    }
+    public void setEmail(String email) { if (RegexEmailFound.emailCheck(email)) this.email = email; }
 
     public void setPassword(String password) { if (RegexPasswordFound.passwordCheck(password)) this.password = password; }
+
     public void setSex(Sex sex) {
         if (sex == null){ this.sex = Sex.UNKNOWN; }
         else this.sex = sex;
     }
+
     @SneakyThrows
     public void setAge(int age) {
-        System.out.println(this.age);
         if (this.age >= 18 && this.age <= 99) this.age = age;
         else throw new InvalidAgeData(resourceBundle.getString("invalid.ageData"));
     }
+
     @SneakyThrows
     public void setLogin(String login) {
-        if (!Connection.findEqualsData("login", login)) this.login = login;
-        else throw new InvalidLoginData(resourceBundle.getString("invalid.loginData"));
+        this.login = login;
     }
 
 }

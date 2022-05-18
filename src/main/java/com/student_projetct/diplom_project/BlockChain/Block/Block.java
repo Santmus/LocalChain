@@ -2,17 +2,18 @@ package com.student_projetct.diplom_project.BlockChain.Block;
 
 import com.student_projetct.diplom_project.BlockChain.CalculateHash.StringCalculateHash;
 import com.student_projetct.diplom_project.BlockChain.Maining.PoW;
+import com.student_projetct.diplom_project.BlockChain.Maining.iMaining;
 import lombok.Getter;
 import lombok.ToString;
 
 import java.util.Arrays;
 import java.util.Date;
 
-@ToString(exclude = {"difficultPrefix", "poW"})
+@ToString(exclude = {"difficultPrefix", "iMaining"})
 @Getter()
 public class Block implements iBlock {
 
-    private String hash;
+    private final String hash;
     private final String[] data;
 
     private final long timeStamp;
@@ -20,10 +21,10 @@ public class Block implements iBlock {
     private final Long index;
     private final iBlock previousBlock;
 
-    private final int difficultPrefix = 2;
+    private final int difficultPrefix = 5;
 
-    // временное значение
-    private final PoW poW = new PoW();
+    // временное поле
+    private final iMaining iMaining = new PoW();
 
     public Block(String[] data) {
         this.index = 0L;
@@ -38,7 +39,7 @@ public class Block implements iBlock {
         this.data = data;
         this.timeStamp = new Date().getTime();
         this.previousBlock = previousBlock;
-        this.hash = previousBlock.getHash();
+        this.hash = getIMaining().mineBlock(difficultPrefix, previousBlock);
     }
 
     @Override
@@ -47,9 +48,10 @@ public class Block implements iBlock {
     }
 
     @Override
-    public String getHash() {
-        this.hash = poW.mineBlock(difficultPrefix, this);
-        return hash;
+    public String getHash() { return StringCalculateHash.applySha256(
+                Arrays.toString(this.getData())
+                        + this.getIndex()
+                        + this.getTimeStamp());
     }
 
 

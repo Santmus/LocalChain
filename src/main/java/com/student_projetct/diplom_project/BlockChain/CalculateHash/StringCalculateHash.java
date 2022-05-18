@@ -8,10 +8,13 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 
-public class StringCalculateHash {
+public class StringCalculateHash implements iSha256{
 
     public static ArrayList<iBlock> blockchain = new ArrayList<iBlock>();
 
+    public static String getJson(Object o) {
+        return new GsonBuilder().setPrettyPrinting().create().toJson(o);
+    }
 
     public static String applySha256(String input){
         try {
@@ -31,21 +34,7 @@ public class StringCalculateHash {
             throw new RuntimeException(e);
         }
     }
-
-    public static String getJson(Object o) {
-        return new GsonBuilder().setPrettyPrinting().create().toJson(o);
-    }
-
-    public static void main(String[] args) {
-        iBlock genesisBlock = new Block(new String[]{"status:" + "create genesis Block"});
-        iBlock firstBlock = new Block(new String[] {""}, genesisBlock);
-        iBlock thirdBlock = new Block(new String[] {"abcd"}, firstBlock);
-
-        System.out.println(genesisBlock);
-        System.out.println(firstBlock);
-        System.out.println(thirdBlock);
-
-    }
 }
+
 
 
