@@ -1,6 +1,7 @@
 package com.student_projetct.diplom_project.Database;
 
 import com.mongodb.client.MongoClients;
+import com.student_projetct.diplom_project.Model.Users.User;
 import org.bson.Document;
 
 import java.util.function.Consumer;
@@ -28,4 +29,11 @@ public class Connection {
         return false;
     }
 
+    public static void addUserToDatabase(User user){
+
+    }
+
+    private static void addUserToWaitDatabase(User user){
+
+    }
 }

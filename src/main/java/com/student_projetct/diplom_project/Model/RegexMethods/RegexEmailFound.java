@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegexEmailFound {
-    private static final String regex = "^([a-z0-9_-]+\\.)*[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$";
+    private static final String regex = "^([a-z0-9_-]+\\.)*[a-zA-Z0-9_-]+@[a-z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$";
     private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("exception");
 
     @SneakyThrows
