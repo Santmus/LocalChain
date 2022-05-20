@@ -1,7 +1,6 @@
 package com.student_projetct.diplom_project.Model.Users;
 
 import com.student_projetct.diplom_project.Exception.InvalidLocalDateTime;
-import com.student_projetct.diplom_project.Model.RegexMethods.RegexEmailFound;
 import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -30,12 +29,12 @@ public class BlockUser {
     }
     @SneakyThrows
     public void setEmail(String email) {
-        if (RegexEmailFound.emailCheck(email)) this.email = email;
+        this.email = email;
     }
 
     @SneakyThrows
     public void setBeginDate(LocalDateTime beginDate) {
-        if (beginDate.isAfter(endDate) || beginDate.isEqual(endDate) || beginDate.isBefore(LocalDateTime.now()))
+        if (beginDate.isAfter(endDate) || beginDate.isEqual(endDate))
             throw new InvalidLocalDateTime(resourceBundle.getString("invalid.localDateTimeBegin"));
         else this.beginDate = beginDate;
     }

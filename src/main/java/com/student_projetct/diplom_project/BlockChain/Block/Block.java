@@ -1,5 +1,6 @@
 package com.student_projetct.diplom_project.BlockChain.Block;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.student_projetct.diplom_project.BlockChain.CalculateHash.StringCalculateHash;
 import com.student_projetct.diplom_project.BlockChain.Maining.PoW;
 import com.student_projetct.diplom_project.BlockChain.Maining.iMaining;
@@ -19,11 +20,12 @@ public class Block implements iBlock {
     private final long timeStamp;
 
     private final Long index;
+
+    @JsonIgnore
     private final iBlock previousBlock;
 
     private final int difficultPrefix = 5;
 
-    // временное поле
     private final iMaining iMaining = new PoW();
 
     public Block(String[] data) {

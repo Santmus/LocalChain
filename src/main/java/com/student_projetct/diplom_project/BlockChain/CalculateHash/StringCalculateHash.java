@@ -1,8 +1,8 @@
 package com.student_projetct.diplom_project.BlockChain.CalculateHash;
 
 import com.google.gson.GsonBuilder;
-import com.student_projetct.diplom_project.BlockChain.Block.Block;
 import com.student_projetct.diplom_project.BlockChain.Block.iBlock;
+import lombok.NonNull;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -16,6 +16,7 @@ public class StringCalculateHash implements iSha256{
         return new GsonBuilder().setPrettyPrinting().create().toJson(o);
     }
 
+    @NonNull
     public static String applySha256(String input){
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
