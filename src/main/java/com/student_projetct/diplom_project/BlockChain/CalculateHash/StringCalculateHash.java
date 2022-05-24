@@ -10,11 +10,13 @@ import java.util.ArrayList;
 
 public class StringCalculateHash implements iSha256{
 
-    public static ArrayList<iBlock> blockchain = new ArrayList<iBlock>();
+   // public static ArrayList<iBlock> blockchain = new ArrayList<iBlock>();
 
-    public static String getJson(Object o) {
+
+    /* public static String getJson(Object o) {
         return new GsonBuilder().setPrettyPrinting().create().toJson(o);
     }
+     */
 
     @NonNull
     public static String applySha256(String input){

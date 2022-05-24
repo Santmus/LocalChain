@@ -27,6 +27,7 @@ public class BlockUser {
         setEndTime(endTime);
         log.info("New block user" + this + " - added in database");
     }
+
     @SneakyThrows
     public void setEmail(String email) {
         this.email = email;

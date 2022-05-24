@@ -6,7 +6,9 @@ public enum Role {
     ADMIN("Admin"),
     USER("User"),
     WAIT_USER("Waituser"),
-    BANNED_USER("Banuser");
+    BANNED_USER("Banuser"),
+    DEVELOPER_USER("Developer"),
+    SERVER("Server");
 
     private final String nameRole;
 
