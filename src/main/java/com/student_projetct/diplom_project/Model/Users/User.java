@@ -1,16 +1,16 @@
 package com.student_projetct.diplom_project.Model.Users;
 
-import com.student_projetct.diplom_project.Database.Connection;
 import com.student_projetct.diplom_project.Enums.Role;
 import com.student_projetct.diplom_project.Enums.Sex;
 import com.student_projetct.diplom_project.Exception.InvalidAgeData;
-import com.student_projetct.diplom_project.Exception.InvalidLoginData;
+import com.student_projetct.diplom_project.Exception.InvalidLocalDateTime;
 import com.student_projetct.diplom_project.Model.RegexMethods.RegexEmailFound;
 import com.student_projetct.diplom_project.Model.RegexMethods.RegexPasswordFound;
 import lombok.Data;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 @Data
@@ -21,7 +21,13 @@ public class User {
     private String email;
     private String name;
     private String surname;
+    private String message;
+
     private int age;
+
+    private LocalDateTime beginDate;
+    private LocalDateTime endDate;
+
     private Sex sex;
     private Role role;
     ResourceBundle resourceBundle = ResourceBundle.getBundle("exception");
@@ -41,6 +47,18 @@ public class User {
         setPassword(password);
         log.info("The new user: " + this + " - create");
     }
+
+    public User(String email, LocalDateTime beginDate,
+                LocalDateTime endDate, String message) {
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.message = message;
+        setEmail(email);
+        setBeginDate(beginDate);
+        setEndDate(endDate);
+        log.info("New block user" + this + " - added in database");
+    }
+
 
     public void setEmail(String email) { if (RegexEmailFound.emailCheck(email)) this.email = email; }
 
@@ -62,4 +80,16 @@ public class User {
         this.login = login;
     }
 
+    @SneakyThrows
+    public void setEndDate(LocalDateTime endDate) {
+        if (endDate.isEqual(LocalDateTime.now()) || endDate.isBefore(LocalDateTime.now())) throw new InvalidLocalDateTime(resourceBundle.getString("invalid.localDateTimeEnd"));
+        else this.endDate = endDate;
+    }
+
+    @SneakyThrows
+    public void setBeginDate(LocalDateTime beginDate) {
+        if (beginDate.isAfter(endDate) || beginDate.isEqual(endDate))
+            throw new InvalidLocalDateTime(resourceBundle.getString("invalid.localDateTimeBegin"));
+        else this.beginDate = beginDate;
+    }
 }

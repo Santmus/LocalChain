@@ -14,6 +14,7 @@ public class Authorization {
 
     private final static Scanner scanner = new Scanner(System.in);
 
+    // убрать цикл с авторизации (потом)
     public static void authorization(String loginOrEmail, String password, ResourceBundle resourceBundle){
         try (var mongoClient = MongoClients.create()) {
             var database = mongoClient.getDatabase("data");
@@ -26,7 +27,7 @@ public class Authorization {
                 System.out.println(resourceBundle.getString("auth.authorization_success"));
                 for (int i = 1; i <= 100; i++){
                     System.out.println(resourceBundle.getString("auth.authorization_process") + i + " %");
-                    Thread.sleep(500);
+                    Thread.sleep(10);
                 }
                 log.info("User success authorization in system");
                 return;
@@ -49,8 +50,7 @@ public class Authorization {
         authorization(emailOrPassword, password, resourceBundle);
     }
 
-
     public static void main(String[] args) {
-        enterDataUser(ResourceBundle.getBundle("language", Locale.FRANCE));
+        enterDataUser(ResourceBundle.getBundle("language", new Locale("en", "EN")));
     }
 }

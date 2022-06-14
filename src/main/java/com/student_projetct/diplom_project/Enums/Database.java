@@ -5,7 +5,7 @@ public enum Database {
     WAIT_USERS("wait_users"),
     BAN_USERS("ban_users");
 
-    private String nameDatabase;
+    private final String nameDatabase;
 
     Database(String nameDatabase) {
         this.nameDatabase = nameDatabase;

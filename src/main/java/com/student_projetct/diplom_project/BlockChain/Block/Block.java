@@ -15,18 +15,18 @@ import java.util.Date;
 public class Block implements iBlock {
 
     private final String hash;
+    // изменить на класс Transaction
     private final String[] data;
 
     private final long timeStamp;
-
     private final Long index;
 
-    @JsonIgnore
-    private final iBlock previousBlock;
 
+    // игнорить поля при генерации json файла
     private final int difficultPrefix = 5;
-
+    private final iBlock previousBlock;
     private final iMaining iMaining = new PoW();
+
 
     public Block(String[] data) {
         this.index = 0L;
@@ -50,11 +50,12 @@ public class Block implements iBlock {
     }
 
     @Override
-    public String getHash() { return StringCalculateHash.applySha256(
-                Arrays.toString(this.getData())
-                        + this.getIndex()
-                        + this.getTimeStamp());
+    public String getHash() {
+        if (previousBlock == null) {
+            return StringCalculateHash.applySha256(
+                    Arrays.toString(this.getData())
+                            + this.getIndex()
+                            + this.getTimeStamp());
+        } else return hash;
     }
-
-
 }

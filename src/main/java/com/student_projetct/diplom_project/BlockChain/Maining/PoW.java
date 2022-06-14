@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 @Slf4j
 public class PoW implements iMaining{
+
     private int nonce;
 
     @Override

@@ -8,18 +8,17 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 
-public class StringCalculateHash implements iSha256{
+public class StringCalculateHash implements iSha256 {
 
-   // public static ArrayList<iBlock> blockchain = new ArrayList<iBlock>();
+    // переместить в Chaining
+    public static ArrayList<iBlock> blockchain = new ArrayList<iBlock>();
 
-
-    /* public static String getJson(Object o) {
+    public static String getJson(Object o) {
         return new GsonBuilder().setPrettyPrinting().create().toJson(o);
     }
-     */
 
     @NonNull
-    public static String applySha256(String input){
+    public static String applySha256(String input) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
 
@@ -32,12 +31,10 @@ public class StringCalculateHash implements iSha256{
                 hexString.append(hex);
             }
             return hexString.toString();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 }
-
 
 
